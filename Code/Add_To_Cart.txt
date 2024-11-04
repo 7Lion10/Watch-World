@@ -1,0 +1,19 @@
+<?php 
+include '../config.php';
+$Admin = new Admin();
+
+    $price =$_GET['price'];
+    $pid =$_GET['pid'];
+    $cid =$_GET['cid'];
+
+    $quantity='1';
+
+
+    $stmt=$Admin->cud("INSERT INTO `cart` (`c_id`,`p_id`,`quantity`,`price`,`date`)
+        VALUES('$cid','$pid','$quantity','$price',now())","Saved");
+
+
+     echo "<script>alert(' Product Added To Cart');window.location='../viewcart.php';</script>";
+
+?>
+

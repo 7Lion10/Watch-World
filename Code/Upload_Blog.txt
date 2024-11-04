@@ -1,0 +1,18 @@
+<?php 
+include '../../config.php';
+$Admin = new Admin();
+
+    $des =$_POST['des'];
+    $title =$_POST['title'];
+
+    $targetdir='upload/';
+    $image=$targetdir.basename($_FILES['image']['name']);
+    move_uploaded_file($_FILES['image']['tmp_name'], $image);
+
+    $stmt=$Admin->cud("INSERT INTO `blog` (`des`,`image`,`date`,`title`)
+        VALUES('$des','$image',now(),'$title')","Saved");
+
+
+     echo "<script>alert('Uploaded successfully');window.location='../viewblog.php';</script>";
+
+?>

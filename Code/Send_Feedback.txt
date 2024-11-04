@@ -1,0 +1,18 @@
+<?php 
+include '../config.php';
+$Admin = new Admin();
+
+    $message =$_POST['message'];
+    $name =$_POST['name'];
+    $email =$_POST['email'];
+    $subject =$_POST['subject'];
+    $cid =$_POST['cid'];
+
+
+
+    $stmt=$Admin->cud("INSERT INTO `feedback` (`message`,`c_id`,`name`,`email`,`subject`,`date`)
+        VALUES('$message','$cid','$name','$email','$subject',now())","Saved");
+
+     echo "<script>alert('Feedback sent successfully');window.location='../feedback.php';</script>";
+
+?>

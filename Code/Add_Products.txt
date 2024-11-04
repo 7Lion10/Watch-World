@@ -1,0 +1,22 @@
+
+<?php 
+include '../config.php';
+$Admin = new Admin();
+
+    $name =$_POST['product'];
+    $price =$_POST['price'];
+    $description =$_POST['des'];
+    $quantity =$_POST['qty'];
+
+    $targetdir='upload/';
+    $image=$targetdir.basename($_FILES['image']['name']);
+    move_uploaded_file($_FILES['image']['tmp_name'], $image);
+
+    $stmt=$Admin->cud("INSERT INTO `products` (`p_name`,`p_price`,`p_description`,`p_image`,`stock`)
+        VALUES('$name','$price','$description','$image','$quantity')","Saved");
+
+
+     echo "<script>alert('Uploaded successfully');window.location='../viewproducts.php';</script>/";
+
+?>
+

@@ -1,0 +1,21 @@
+<?php 
+include '../../config.php';
+$admin = new Admin();
+
+$username =$_POST['username'];
+$password =$_POST['password']; 
+$stmt=$admin->ret("select * from `shopowner` where `username`='$username' AND `password`='$password' AND`status`='approved'");
+$num =$stmt->rowCount();
+if ($num>0) {
+	$row=$stmt->fetch(PDO::FETCH_ASSOC);
+	$s_id=$row['s_id'];
+	$_SESSION['s_id']=$s_id;
+
+     echo "<script>alert('Login successful..');window.location='../index.php';</script>";
+	// code...
+
+}
+else{
+     echo "<script>alert('Your account is pending!');window.location='../login/login.php';</script>";
+ }
+ ?>

@@ -1,0 +1,21 @@
+<?php 
+include '../../config.php';
+$admin = new Admin();
+
+$username =$_POST['username'];
+$password =$_POST['password']; 
+$stmt=$admin->ret("select * from `admin` where `username`='$username' AND `password`='$password'");
+$num =$stmt->rowCount();
+if ($num>0) {
+	$row=$stmt->fetch(PDO::FETCH_ASSOC);
+	$a_id=$row['a_id'];
+	$_SESSION['a_id']=$a_id;
+
+     echo "<script>alert('Login successful..');window.location='../index.php';</script>";
+	// code...
+
+}
+else{
+     echo "<script>alert('Login Failed..');window.location='../login/login.php';</script>";
+ }
+ ?>
